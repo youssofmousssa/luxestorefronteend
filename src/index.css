@@ -1,0 +1,368 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Enhanced Dark theme with refined glassmorphism */
+@layer base {
+  :root {
+    --background: 222 84% 5%;
+    --foreground: 210 40% 98%;
+    --card: 222 84% 5%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 84% 5%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 47 100% 50%;
+    --primary-foreground: 222 84% 5%;
+    --secondary: 217 32% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 32% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 32% 18%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 32% 18%;
+    --input: 217 32% 18%;
+    --ring: 47 100% 50%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-gray-900 via-black to-gray-800 text-foreground min-h-screen;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Refined Mobile-First Glassmorphism Components */
+@layer components {
+  /* Enhanced Glass Card with Mobile Optimization */
+  .glass-card {
+    @apply bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-lg shadow-xl;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    @apply border-white/[0.12] shadow-2xl;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%);
+    transform: translateY(-1px);
+  }
+
+  /* Refined Glass Button with Centered Icons */
+  .glass-button {
+    @apply bg-white/[0.06] backdrop-blur-md border border-white/[0.12] rounded-lg transition-all duration-200 hover:bg-white/[0.12] hover:border-white/[0.2] active:scale-95 flex items-center justify-center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Enhanced Glass Input */
+  .glass-input {
+    @apply bg-white/[0.04] backdrop-blur-md border border-white/[0.15] rounded-lg text-white placeholder-white/40 focus:border-primary/40 focus:ring-1 focus:ring-primary/20 transition-all duration-200;
+  }
+
+  /* Refined Hero Gradient */
+  .hero-gradient {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 25%, #2d2d2d 50%, #1a1a1a 75%, #000000 100%);
+  }
+
+  /* Enhanced Text Gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent;
+  }
+
+  /* Refined Primary Button with Centered Content */
+  .btn-primary {
+    @apply bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold rounded-lg transition-all duration-200 hover:from-yellow-300 hover:to-yellow-400 hover:shadow-lg hover:shadow-yellow-500/20 active:scale-95 flex items-center justify-center;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.25);
+  }
+
+  /* Refined Secondary Button with Centered Content */
+  .btn-secondary {
+    @apply glass-button text-white font-medium hover:scale-[1.02] active:scale-95;
+  }
+
+  /* Enhanced Product Card for Mobile Full Width */
+  .product-card {
+    @apply glass-card cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  }
+
+  /* Refined Navigation Link */
+  .nav-link {
+    @apply text-white/70 hover:text-white transition-colors duration-200 relative text-sm font-medium;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500 transition-all duration-200;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  /* Enhanced Cart Badge */
+  .cart-badge {
+    @apply absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse;
+    font-size: 10px;
+  }
+
+  /* Mobile-Specific Optimizations */
+  @media (max-width: 768px) {
+    /* Full Width Glass Cards for Mobile */
+    .glass-card {
+      @apply mx-0 my-2 rounded-xl p-4;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+    }
+    
+    /* Refined Hero Section */
+    .hero-section {
+      @apply px-3 py-8;
+    }
+    
+    /* Compact Typography */
+    .hero-title {
+      @apply text-3xl leading-tight font-bold;
+    }
+    
+    .hero-subtitle {
+      @apply text-base leading-relaxed;
+    }
+    
+    /* Mobile Padding */
+    .mobile-padding {
+      @apply px-3 py-6;
+    }
+
+    /* Full Width Product Card for Mobile */
+    .product-card {
+      @apply p-4 rounded-xl w-full;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Centered Buttons for Mobile */
+    .btn-primary {
+      @apply py-3 px-4 text-sm font-semibold rounded-lg min-h-[44px] flex items-center justify-center;
+      box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+    }
+
+    .btn-secondary {
+      @apply py-3 px-4 text-sm font-medium rounded-lg min-h-[44px] flex items-center justify-center;
+    }
+
+    .glass-button {
+      @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+    }
+
+    /* Enhanced Cart Badge */
+    .cart-badge {
+      @apply h-5 w-5 text-xs flex items-center justify-center;
+    }
+
+    /* Mobile Full Width Grid */
+    .mobile-grid-full {
+      @apply grid grid-cols-1 gap-4;
+    }
+
+    .mobile-product-grid {
+      @apply grid grid-cols-1 gap-4 px-3;
+    }
+
+    /* Refined Typography */
+    .mobile-title {
+      @apply text-xl font-bold leading-tight;
+    }
+
+    .mobile-subtitle {
+      @apply text-sm text-white/70 leading-relaxed;
+    }
+
+    /* Enhanced Touch Targets with Centered Content */
+    .mobile-touch-target {
+      @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+    }
+
+    /* Compact Form Elements */
+    .glass-input {
+      @apply py-3 px-3 text-sm rounded-lg;
+    }
+
+    /* Mobile Navigation */
+    .mobile-nav-item {
+      @apply py-3 px-3 text-base font-medium;
+    }
+  }
+
+  /* Ultra-Compact for Small Screens */
+  @media (max-width: 480px) {
+    .glass-card {
+      @apply mx-0 my-2 p-4 rounded-lg;
+    }
+
+    .product-card {
+      @apply p-4 rounded-lg w-full;
+    }
+
+    .mobile-product-grid {
+      @apply grid-cols-1 gap-4 px-2;
+    }
+
+    .hero-title {
+      @apply text-2xl;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      @apply py-3 px-4 text-sm rounded-md min-h-[44px] flex items-center justify-center;
+    }
+
+    .glass-button {
+      @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+    }
+
+    .cart-badge {
+      @apply h-5 w-5 text-xs flex items-center justify-center;
+      font-size: 10px;
+    }
+  }
+}
+
+/* Enhanced Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.6), rgba(255, 193, 7, 0.6));
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.8), rgba(255, 193, 7, 0.8));
+}
+
+/* Refined Loading Animation */
+.loading-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+  background-size: 200% 100%;
+  animation: refined-shimmer 2s infinite;
+}
+
+/* Enhanced Mobile Interactions */
+@media (max-width: 768px) {
+  button, a {
+    @apply min-h-[44px] flex items-center justify-center;
+  }
+  
+  input, textarea {
+    @apply text-base py-3 px-3 rounded-lg;
+  }
+
+  button:active,
+  .glass-button:active {
+    transform: scale(0.96);
+    transition: transform 0.1s ease;
+  }
+
+  input:focus,
+  textarea:focus {
+    @apply ring-2 ring-primary/25 border-primary/50;
+  }
+}
+
+/* Refined Animations */
+@keyframes refined-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes mobile-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobile-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Enhanced Card Effects */
+.enhanced-card {
+  @apply relative overflow-hidden;
+}
+
+.enhanced-card::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.enhanced-card:hover::before {
+  transform: translateX(100%);
+}
+
+/* Refined Visual Depth */
+.depth-card {
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.depth-card:hover {
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.15),
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Mobile-Optimized Footer */
+@media (max-width: 768px) {
+  .footer-grid {
+    @apply grid-cols-1 gap-6 text-center;
+  }
+
+  .footer-section {
+    @apply space-y-3;
+  }
+
+  .social-links {
+    @apply flex justify-center space-x-3;
+  }
+}
