@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, User, Search, Menu, X, Sparkles, ChevronDown, Home, ShoppingBag, Layers, Info, Phone } from 'lucide-react';

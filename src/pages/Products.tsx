@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, Grid, List, SlidersHorizontal } from 'lucide-react';
+import { Search, Filter, Grid, List, SlidersHorizontal, Star, Heart } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import type { Product } from '../components/ProductCard';
 
@@ -172,88 +171,100 @@ const Products = () => {
   }, [selectedCategory, searchQuery, sortBy, priceRange]);
 
   return (
-    <div className="min-h-screen pt-14 sm:pt-20">
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 md:py-8">
-        {/* Header */}
-        <div className="mb-6 sm:mb-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
-            Luxury <span className="text-gradient">Collection</span>
-          </h1>
-          <p className="text-white/60 text-base sm:text-lg">
-            Discover our curated selection of premium fashion and accessories
-          </p>
+    <div className="min-h-screen pt-14 sm:pt-20 bg-gradient-to-br from-gray-900 via-black to-gray-800">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+        {/* Enhanced Hero Section */}
+        <div className="py-8 sm:py-12 md:py-16 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 blur-3xl"></div>
+          <div className="relative z-10">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
+              Luxury <span className="text-gradient">Collection</span>
+            </h1>
+            <p className="text-white/70 text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+              Discover our curated selection of premium fashion and accessories
+            </p>
+            <div className="flex items-center justify-center space-x-1 mt-4">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+              ))}
+              <span className="text-white/60 ml-2">4.8 • 10,000+ Reviews</span>
+            </div>
+          </div>
         </div>
 
-        {/* Search and Filters Bar */}
-        <div className="glass-card p-4 sm:p-6 mb-6 sm:mb-8">
-          <div className="flex flex-col space-y-4 lg:flex-row lg:gap-4 lg:items-center lg:justify-between lg:space-y-0">
+        {/* Enhanced Search and Filters */}
+        <div className="glass-card p-4 sm:p-6 lg:p-8 mb-8 border border-white/10">
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
             {/* Search */}
-            <div className="relative flex-1 max-w-full lg:max-w-md">
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="glass-input w-full pl-10 pr-4 py-3 text-base"
-              />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-5 h-5" />
+            <div className="relative flex-1 max-w-full lg:max-w-lg">
+              <div className="relative group">
+                <input
+                  type="text"
+                  placeholder="Search for luxury items..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="glass-input-enhanced w-full pl-12 pr-4 py-4 text-base rounded-2xl border-2 border-transparent focus:border-primary/30 transition-all duration-300"
+                />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 group-focus-within:text-primary transition-colors w-5 h-5" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/5 to-yellow-300/5 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              </div>
             </div>
 
             {/* Controls */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 lg:space-x-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 lg:gap-4">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="glass-button px-4 py-3 space-x-2 text-sm sm:text-base"
+                className={`glass-button-enhanced px-6 py-4 space-x-2 text-base font-medium transition-all duration-300 ${showFilters ? 'bg-primary/20 text-primary' : ''}`}
               >
-                <SlidersHorizontal className="w-4 h-4" />
+                <SlidersHorizontal className="w-5 h-5" />
                 <span>Filters</span>
               </button>
 
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="glass-input px-4 py-3 text-sm sm:text-base"
+                className="glass-input-enhanced px-6 py-4 text-base rounded-xl font-medium"
               >
                 {sortOptions.map(option => (
-                  <option key={option.value} value={option.value} className="bg-black">
+                  <option key={option.value} value={option.value} className="bg-gray-900 text-white">
                     {option.label}
                   </option>
                 ))}
               </select>
 
-              <div className="flex items-center space-x-2 justify-center sm:justify-start">
+              <div className="flex items-center space-x-2">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`glass-button p-3 ${viewMode === 'grid' ? 'text-primary' : ''}`}
+                  className={`glass-button-enhanced p-4 transition-all duration-300 ${viewMode === 'grid' ? 'text-primary bg-primary/20' : ''}`}
                 >
-                  <Grid className="w-4 h-4" />
+                  <Grid className="w-5 h-5" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`glass-button p-3 ${viewMode === 'list' ? 'text-primary' : ''}`}
+                  className={`glass-button-enhanced p-4 transition-all duration-300 ${viewMode === 'list' ? 'text-primary bg-primary/20' : ''}`}
                 >
-                  <List className="w-4 h-4" />
+                  <List className="w-5 h-5" />
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Filters Panel */}
+          {/* Enhanced Filters Panel */}
           {showFilters && (
-            <div className="mt-6 pt-6 border-t border-white/10">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="mt-8 pt-8 border-t border-white/10">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                 {/* Categories */}
                 <div>
-                  <h3 className="text-white font-semibold mb-3 text-sm sm:text-base">Category</h3>
+                  <h3 className="text-white font-bold mb-4 text-lg">Category</h3>
                   <div className="space-y-2">
                     {categories.map(category => (
                       <button
                         key={category}
                         onClick={() => setSelectedCategory(category)}
-                        className={`block w-full text-left px-3 py-2 rounded-lg transition-colors text-sm sm:text-base ${
+                        className={`block w-full text-left px-4 py-3 rounded-xl transition-all duration-300 font-medium ${
                           selectedCategory === category
-                            ? 'bg-primary text-black font-medium'
-                            : 'text-white/60 hover:text-white hover:bg-white/5'
+                            ? 'bg-gradient-to-r from-primary to-yellow-400 text-black shadow-lg'
+                            : 'text-white/70 hover:text-white hover:bg-white/10 border border-white/10'
                         }`}
                       >
                         {category}
@@ -264,39 +275,57 @@ const Products = () => {
 
                 {/* Price Range */}
                 <div>
-                  <h3 className="text-white font-semibold mb-3 text-sm sm:text-base">Price Range</h3>
-                  <div className="space-y-3">
+                  <h3 className="text-white font-bold mb-4 text-lg">Price Range</h3>
+                  <div className="space-y-4">
                     <input
                       type="range"
                       min="0"
                       max="2000"
                       value={priceRange[1]}
                       onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                      className="w-full accent-primary"
+                      className="w-full accent-primary h-2 bg-white/10 rounded-lg"
                     />
-                    <div className="flex justify-between text-white/60 text-sm">
-                      <span>${priceRange[0]}</span>
-                      <span>${priceRange[1]}</span>
+                    <div className="flex justify-between text-white/70 font-medium">
+                      <span className="bg-white/10 px-3 py-1 rounded-lg">${priceRange[0]}</span>
+                      <span className="bg-white/10 px-3 py-1 rounded-lg">${priceRange[1]}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Quick Filters */}
                 <div>
-                  <h3 className="text-white font-semibold mb-3 text-sm sm:text-base">Quick Filters</h3>
-                  <div className="space-y-2">
-                    <label className="flex items-center space-x-2 text-white/60 text-sm sm:text-base">
-                      <input type="checkbox" className="accent-primary" />
+                  <h3 className="text-white font-bold mb-4 text-lg">Quick Filters</h3>
+                  <div className="space-y-3">
+                    <label className="flex items-center space-x-3 text-white/70 font-medium cursor-pointer hover:text-white transition-colors">
+                      <input type="checkbox" className="accent-primary w-4 h-4" />
                       <span>On Sale</span>
                     </label>
-                    <label className="flex items-center space-x-2 text-white/60 text-sm sm:text-base">
-                      <input type="checkbox" className="accent-primary" />
+                    <label className="flex items-center space-x-3 text-white/70 font-medium cursor-pointer hover:text-white transition-colors">
+                      <input type="checkbox" className="accent-primary w-4 h-4" />
                       <span>New Arrivals</span>
                     </label>
-                    <label className="flex items-center space-x-2 text-white/60 text-sm sm:text-base">
-                      <input type="checkbox" className="accent-primary" />
+                    <label className="flex items-center space-x-3 text-white/70 font-medium cursor-pointer hover:text-white transition-colors">
+                      <input type="checkbox" className="accent-primary w-4 h-4" />
                       <span>Free Shipping</span>
                     </label>
+                  </div>
+                </div>
+
+                {/* Rating Filter */}
+                <div>
+                  <h3 className="text-white font-bold mb-4 text-lg">Rating</h3>
+                  <div className="space-y-3">
+                    {[4, 3, 2, 1].map(rating => (
+                      <label key={rating} className="flex items-center space-x-3 text-white/70 font-medium cursor-pointer hover:text-white transition-colors">
+                        <input type="checkbox" className="accent-primary w-4 h-4" />
+                        <div className="flex items-center space-x-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className={`w-4 h-4 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-400'}`} />
+                          ))}
+                          <span>& up</span>
+                        </div>
+                      </label>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -304,38 +333,42 @@ const Products = () => {
           )}
         </div>
 
-        {/* Results Count */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 space-y-2 sm:space-y-0">
-          <p className="text-white/60 text-sm sm:text-base">
-            Showing {filteredProducts.length} of {allProducts.length} products
-          </p>
-          {selectedCategory !== 'All' && (
-            <button
-              onClick={() => setSelectedCategory('All')}
-              className="text-primary hover:text-primary/80 text-sm font-medium self-start sm:self-auto"
-            >
-              Clear Filters
-            </button>
-          )}
+        {/* Results Summary */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 space-y-3 sm:space-y-0">
+          <div className="flex items-center space-x-4">
+            <p className="text-white/80 font-medium text-lg">
+              <span className="text-white font-bold">{filteredProducts.length}</span> of {allProducts.length} products
+            </p>
+            {selectedCategory !== 'All' && (
+              <button
+                onClick={() => setSelectedCategory('All')}
+                className="text-primary hover:text-primary/80 font-medium text-sm bg-primary/10 px-3 py-1 rounded-full transition-colors"
+              >
+                Clear Filters
+              </button>
+            )}
+          </div>
         </div>
 
-        {/* Products Grid - Mobile Full Width */}
-        <div className={`grid gap-4 sm:gap-6 md:gap-8 ${viewMode === 'grid' 
-          ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4' 
-          : 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-2'
+        {/* Enhanced Products Grid */}
+        <div className={`grid gap-6 md:gap-8 mb-12 ${viewMode === 'grid' 
+          ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
+          : 'grid-cols-1 lg:grid-cols-2'
         }`}>
           {filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
-        {/* No Results */}
+        {/* No Results State */}
         {filteredProducts.length === 0 && (
-          <div className="text-center py-8 sm:py-12">
-            <div className="glass-card p-8 sm:p-12 max-w-md mx-auto">
-              <Search className="w-12 h-12 sm:w-16 sm:h-16 text-white/30 mx-auto mb-4" />
-              <h3 className="text-white text-lg sm:text-xl font-semibold mb-2">No products found</h3>
-              <p className="text-white/60 mb-4 sm:mb-6 text-sm sm:text-base">
+          <div className="text-center py-16">
+            <div className="glass-card p-12 max-w-lg mx-auto">
+              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-primary/20 to-yellow-400/20 rounded-full flex items-center justify-center">
+                <Search className="w-10 h-10 text-white/50" />
+              </div>
+              <h3 className="text-white text-2xl font-bold mb-4">No products found</h3>
+              <p className="text-white/60 mb-6 text-lg">
                 Try adjusting your search criteria or browse all products
               </p>
               <button
@@ -344,7 +377,7 @@ const Products = () => {
                   setSelectedCategory('All');
                   setPriceRange([0, 2000]);
                 }}
-                className="btn-primary"
+                className="btn-primary px-8 py-4 text-lg font-semibold"
               >
                 View All Products
               </button>
@@ -354,8 +387,8 @@ const Products = () => {
 
         {/* Load More Button */}
         {filteredProducts.length > 0 && filteredProducts.length >= 8 && (
-          <div className="text-center mt-8 sm:mt-12">
-            <button className="btn-secondary px-6 sm:px-8 py-3">
+          <div className="text-center pb-16">
+            <button className="btn-secondary px-8 py-4 text-lg font-medium">
               Load More Products
             </button>
           </div>
