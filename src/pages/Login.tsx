@@ -128,15 +128,15 @@ const Login = () => {
                       <FormItem>
                         <FormLabel className="text-white">Email Address</FormLabel>
                         <FormControl>
-                          <div className="relative">
-                            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50" />
-                            <Input 
-                              type="email" 
-                              placeholder="Enter your email" 
-                              className="glass-input-enhanced pl-10" 
-                              {...field} 
-                            />
-                          </div>
+                          <div className="relative group">
+  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+  <Input 
+    type="email" 
+    placeholder="Enter your email" 
+    className="glass-input-enhanced pl-10" 
+    {...field} 
+  />
+</div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -150,22 +150,22 @@ const Login = () => {
                       <FormItem>
                         <FormLabel className="text-white">Password</FormLabel>
                         <FormControl>
-                          <div className="relative">
-                            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50" />
-                            <Input 
-                              type={showPassword ? "text" : "password"} 
-                              placeholder="Enter your password" 
-                              className="glass-input-enhanced pl-10 pr-10" 
-                              {...field} 
-                            />
-                            <button
-                              type="button"
-                              onClick={() => setShowPassword(!showPassword)}
-                              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white"
-                            >
-                              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                            </button>
-                          </div>
+                          <div className="relative group">
+  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+  <Input 
+    type={showPassword ? "text" : "password"} 
+    placeholder="Enter your password" 
+    className="glass-input-enhanced pl-10 pr-10" 
+    {...field} 
+  />
+  <button
+    type="button"
+    onClick={() => setShowPassword(!showPassword)}
+    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white"
+  >
+    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+  </button>
+</div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -188,8 +188,8 @@ const Login = () => {
                       <FormItem>
                         <FormLabel className="text-white">Full Name</FormLabel>
                         <FormControl>
-                          <div className="relative">
-                            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50" />
+                          <div className="relative group">
+                            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             <Input 
                               type="text"
                               placeholder="Enter your full name" 
@@ -210,15 +210,15 @@ const Login = () => {
                       <FormItem>
                         <FormLabel className="text-white">Email Address</FormLabel>
                         <FormControl>
-                          <div className="relative">
-                            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50" />
-                            <Input 
-                              type="email" 
-                              placeholder="Enter your email" 
-                              className="glass-input-enhanced pl-10" 
-                              {...field} 
-                            />
-                          </div>
+                          <div className="relative group">
+  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+  <Input 
+    type="email" 
+    placeholder="Enter your email" 
+    className="glass-input-enhanced pl-10" 
+    {...field} 
+  />
+</div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -261,15 +261,15 @@ const Login = () => {
                       <FormItem>
                         <FormLabel className="text-white">Confirm Password</FormLabel>
                         <FormControl>
-                          <div className="relative">
-                            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50" />
-                            <Input 
-                              type="password" 
-                              placeholder="Confirm your password" 
-                              className="glass-input-enhanced pl-10" 
-                              {...field} 
-                            />
-                          </div>
+                          <div className="relative group">
+  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+  <Input 
+    type="password" 
+    placeholder="Confirm your password" 
+    className="glass-input-enhanced pl-10" 
+    {...field} 
+  />
+</div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
