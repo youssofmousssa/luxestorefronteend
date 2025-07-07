@@ -1,8 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, User, Search, Menu, X, Sparkles, ChevronDown, Home, ShoppingBag, Layers, Info, Phone } from 'lucide-react';
+import { ShoppingCart, User, LogOut, Search, Menu, X, Sparkles, ChevronDown, Home, ShoppingBag, Layers, Info, Phone } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+// Logout function for use everywhere
+export function luxeLogout() {
+  localStorage.removeItem('luxe_jwt');
+  localStorage.removeItem('luxe_user');
+  window.location.href = '/login';
+}
 import './ResponsiveNav.css';
 
 const Navbar = () => {
@@ -10,8 +16,28 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('luxe_jwt'));
+  const [isAdmin, setIsAdmin] = useState(() => {
+    try {
+      const user = JSON.parse(localStorage.getItem('luxe_user') || '{}');
+      return user.role === 'admin';
+    } catch { return false; }
+  });
   const location = useLocation();
   const { state, dispatch } = useCart();
+
+  // Listen for login/logout changes
+  useEffect(() => {
+    const handler = () => {
+      setIsLoggedIn(!!localStorage.getItem('luxe_jwt'));
+      try {
+        const user = JSON.parse(localStorage.getItem('luxe_user') || '{}');
+        setIsAdmin(user.role === 'admin');
+      } catch { setIsAdmin(false); }
+    };
+    window.addEventListener('storage', handler);
+    return () => window.removeEventListener('storage', handler);
+  }, []);
 
   const navItems = [
     { 
@@ -107,7 +133,16 @@ const Navbar = () => {
                       }`} />
                     )}
                   </Link>
-                  
+                  {isAdmin && (
+                    <Link
+                      to="/admin"
+                      className={`nav-link-desktop flex items-center space-x-2 text-yellow-400 font-bold animate-pulse`}
+                      onClick={handleLinkClick}
+                    >
+                      <Sparkles className="w-4 h-4 xl:w-5 xl:h-5" />
+                      <span className="text-sm xl:text-base font-semibold">Admin</span>
+                    </Link>
+                  )}
                   {/* Enhanced Dropdown Menu */}
                   {item.hasDropdown && item.dropdownItems && (
                     <div className={`absolute top-full left-0 mt-2 w-56 glass-card border border-white/15 rounded-xl shadow-2xl transition-all duration-300 transform origin-top z-50 bg-gray-900/95 backdrop-blur-xl ${
@@ -173,10 +208,21 @@ const Navbar = () => {
               <Search className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </button>
 
-            {/* User Account */}
-            <Link to="/login" className="glass-button-responsive p-2 group hover:text-primary transition-colors" onClick={handleLinkClick}>
-              <User className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
-            </Link>
+            {/* User Account or Logout */}
+            {isLoggedIn ? (
+              <button
+                onClick={() => { luxeLogout(); setIsLoggedIn(false); }}
+                className="glass-button-responsive p-2 group bg-gradient-to-r from-primary to-yellow-400 hover:from-yellow-400 hover:to-primary text-white flex items-center space-x-2 rounded-lg shadow-lg transition-all duration-300"
+                title="Logout"
+              >
+                <LogOut className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform mr-1" />
+                <span className="hidden md:inline font-semibold">Logout</span>
+              </button>
+            ) : (
+              <Link to="/login" className="glass-button-responsive p-2 group hover:text-primary transition-colors" onClick={handleLinkClick}>
+                <User className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
+              </Link>
+            )}
 
             {/* Shopping Cart */}
             <button

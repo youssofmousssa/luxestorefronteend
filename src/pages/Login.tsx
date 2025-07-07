@@ -31,21 +31,76 @@ const Login = () => {
     }
   });
 
-  const onLoginSubmit = (data: any) => {
-    console.log('Login submitted:', data);
-    toast({
-      title: "Welcome back!",
-      description: "You have been successfully logged in.",
-    });
+  const onLoginSubmit = async (data: any) => {
+    try {
+      const res = await fetch('https://luxestorebackeend-1.onrender.com/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || 'Login failed');
+      localStorage.setItem('luxe_jwt', result.token);
+      localStorage.setItem('luxe_user', JSON.stringify(result.user));
+      toast({
+        title: "Welcome back!",
+        description: "You have been successfully logged in.",
+      });
+      // Optionally redirect or update UI here
+    } catch (err: any) {
+      toast({
+        title: "Login failed",
+        description: err.message,
+        variant: "destructive",
+      });
+    }
   };
 
-  const onRegisterSubmit = (data: any) => {
-    console.log('Register submitted:', data);
-    toast({
-      title: "Account created!",
-      description: "Welcome to LuxeStore. Your account has been created successfully.",
-    });
+  const onRegisterSubmit = async (data: any) => {
+    if (data.password !== data.confirmPassword) {
+      toast({
+        title: "Password mismatch",
+        description: "Passwords do not match.",
+        variant: "destructive",
+      });
+      return;
+    }
+    try {
+      const payload = { name: data.name, email: data.email, password: data.password };
+      const res = await fetch('https://luxestorebackeend-1.onrender.com/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || 'Registration failed');
+      toast({
+        title: "Account created!",
+        description: "Welcome to LuxeStore. Your account has been created successfully.",
+      });
+      setIsLogin(true); // Switch to login form
+    } catch (err: any) {
+      toast({
+        title: "Registration failed",
+        description: err.message,
+        variant: "destructive",
+      });
+    }
   };
+
+  // Logout function for use elsewhere in the app
+  export function luxeLogout() {
+    const token = localStorage.getItem('luxe_jwt');
+    if (!token) return;
+    fetch('https://luxestorebackeend-1.onrender.com/api/auth/logout', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${token}` },
+    }).finally(() => {
+      localStorage.removeItem('luxe_jwt');
+      localStorage.removeItem('luxe_user');
+      window.location.href = '/login';
+    });
+  }
 
   return (
     <div className="min-h-screen pt-20 flex items-center justify-center mobile-padding">

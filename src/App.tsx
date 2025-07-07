@@ -22,6 +22,7 @@ import Collections from "./pages/Collections";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
+import ProtectedAdmin from "./pages/ProtectedAdmin";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
@@ -51,7 +52,7 @@ const App = () => (
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/admin" element={<Admin />} />
+                <Route path="/admin" element={<ProtectedAdmin />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
