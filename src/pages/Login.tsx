@@ -9,6 +9,7 @@ import { Eye, EyeOff, Mail, Lock, User, Sparkles, Github, Facebook } from 'lucid
 import { useForm } from 'react-hook-form';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
+import { luxeLogout } from '../components/Navbar';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -87,20 +88,6 @@ const Login = () => {
       });
     }
   };
-
-  // Logout function for use elsewhere in the app
-  export function luxeLogout() {
-    const token = localStorage.getItem('luxe_jwt');
-    if (!token) return;
-    fetch('https://luxestorebackeend-1.onrender.com/api/auth/logout', {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${token}` },
-    }).finally(() => {
-      localStorage.removeItem('luxe_jwt');
-      localStorage.removeItem('luxe_user');
-      window.location.href = '/login';
-    });
-  }
 
   return (
     <div className="min-h-screen pt-20 flex items-center justify-center mobile-padding">
