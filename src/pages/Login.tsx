@@ -191,6 +191,7 @@ const Login = () => {
                           <div className="relative">
                             <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50" />
                             <Input 
+                              type="text"
                               placeholder="Enter your full name" 
                               className="glass-input-enhanced pl-10" 
                               {...field} 
