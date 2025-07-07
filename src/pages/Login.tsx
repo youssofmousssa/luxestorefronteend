@@ -25,26 +25,71 @@ const Login = () => {
     defaultValues: {
       name: '',
       email: '',
-      password: '',
-      confirmPassword: ''
+      password: ''
     }
   });
 
-  const onLoginSubmit = (data: any) => {
-    console.log('Login submitted:', data);
-    toast({
-      title: "Welcome back!",
-      description: "You have been successfully logged in.",
-    });
+  const onLoginSubmit = async (data: any) => {
+    try {
+      const res = await fetch('https://luxestorebackeend-2.onrender.com/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: data.email, password: data.password }),
+      });
+      const result = await res.json();
+      if (!res.ok) {
+        toast({
+          title: 'Login failed',
+          description: result.error || 'An error occurred.',
+          variant: 'destructive',
+        });
+        return;
+      }
+      localStorage.setItem('token', result.token);
+      toast({
+        title: 'Welcome back!',
+        description: 'You have been successfully logged in.',
+      });
+      // TODO: redirect to dashboard or home
+    } catch (err) {
+      toast({
+        title: 'Login failed',
+        description: 'Network error. Please try again.',
+        variant: 'destructive',
+      });
+    }
   };
 
-  const onRegisterSubmit = (data: any) => {
-    console.log('Register submitted:', data);
-    toast({
-      title: "Account created!",
-      description: "Welcome to LuxeStore. Your account has been created successfully.",
-    });
+  const onRegisterSubmit = async (data: any) => {
+    try {
+      const res = await fetch('https://luxestorebackeend-2.onrender.com/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: data.name, email: data.email, password: data.password }),
+      });
+      const result = await res.json();
+      if (!res.ok) {
+        toast({
+          title: 'Registration failed',
+          description: result.error || 'An error occurred.',
+          variant: 'destructive',
+        });
+        return;
+      }
+      toast({
+        title: 'Account created!',
+        description: 'Welcome to LuxeStore. Your account has been created successfully.',
+      });
+      setIsLogin(true);
+    } catch (err) {
+      toast({
+        title: 'Registration failed',
+        description: 'Network error. Please try again.',
+        variant: 'destructive',
+      });
+    }
   };
+
 
   return (
     <div className="min-h-screen pt-20 flex items-center justify-center mobile-padding">
@@ -259,27 +304,6 @@ const Login = () => {
                     )}
                   />
 
-                  <FormField
-                    control={registerForm.control}
-                    name="confirmPassword"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">Confirm Password</FormLabel>
-                        <FormControl>
-                          <div className="relative">
-                            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/50" />
-                            <Input 
-                              type="password" 
-                              placeholder="Confirm your password" 
-                              className="glass-input-enhanced pl-10" 
-                              {...field} 
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
 
                   <div className="flex items-start space-x-2 text-sm">
                     <input type="checkbox" className="mt-1 rounded border-white/30 bg-white/10" />
