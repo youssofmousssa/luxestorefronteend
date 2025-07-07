@@ -66,19 +66,19 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 text-white">
-        <div className="absolute inset-0 bg-black/20" />
+      <div className="relative hero-section">
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-gray-900/80 to-black/60" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
             <div className="flex items-center justify-center mb-6">
-              <Sparkles className="w-8 h-8 text-yellow-400 mr-3 animate-pulse" />
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
+              <Sparkles className="w-8 h-8 text-primary mr-3 animate-pulse" />
+              <h1 className="hero-title text-gradient">
                 About LuxeStore
               </h1>
             </div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="hero-subtitle text-white/80 max-w-3xl mx-auto">
               Redefining luxury retail through curated excellence, exceptional service, 
               and a commitment to making premium fashion accessible to all.
             </p>
@@ -86,13 +86,13 @@ const About = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto mobile-padding lg:px-8 py-16">
         {/* Our Story */}
         <div className="mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
-              <div className="space-y-4 text-gray-600">
+              <h2 className="text-3xl font-bold text-white mb-6">Our Story</h2>
+              <div className="space-y-4 text-white/70">
                 <p>
                   LuxeStore was founded on the belief that luxury fashion should be more than just 
                   expensive clothing—it should be an experience that elevates and inspires. 
@@ -112,10 +112,10 @@ const About = () => {
                 </p>
               </div>
               <div className="mt-8 flex space-x-4">
-                <Button size="lg">
+                <Button size="lg" className="btn-primary">
                   Our Collections
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="btn-secondary">
                   Contact Us
                 </Button>
               </div>
@@ -126,12 +126,12 @@ const About = () => {
                 alt="Luxury fashion store interior"
                 className="rounded-2xl shadow-2xl"
               />
-              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl">
+              <div className="glass-card absolute -bottom-6 -right-6 p-6 rounded-xl">
                 <div className="flex items-center space-x-4">
-                  <Award className="w-8 h-8 text-yellow-500" />
+                  <Award className="w-8 h-8 text-primary" />
                   <div>
-                    <p className="font-semibold text-gray-900">Award Winner</p>
-                    <p className="text-sm text-gray-600">Luxury Retailer 2023</p>
+                    <p className="font-semibold text-white">Award Winner</p>
+                    <p className="text-sm text-white/70">Luxury Retailer 2023</p>
                   </div>
                 </div>
               </div>
@@ -141,24 +141,24 @@ const About = () => {
 
         {/* Timeline */}
         <div className="mb-20">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Our Journey</h2>
+          <h2 className="text-3xl font-bold text-white text-center mb-12">Our Journey</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {milestones.map((milestone, index) => (
-              <Card key={milestone.year} className="relative overflow-hidden group hover:shadow-xl transition-all duration-300">
+              <Card key={milestone.year} className="glass-card relative overflow-hidden group hover:shadow-xl transition-all duration-300">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-purple-600" />
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <Badge variant="secondary" className="text-lg px-3 py-1">
+                    <Badge variant="secondary" className="text-lg px-3 py-1 badge-enhanced">
                       {milestone.year}
                     </Badge>
                     <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                       <div className="w-3 h-3 bg-primary rounded-full" />
                     </div>
                   </div>
-                  <CardTitle className="text-xl">{milestone.title}</CardTitle>
+                  <CardTitle className="text-xl text-white">{milestone.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-gray-600">
+                  <CardDescription className="text-white/70">
                     {milestone.description}
                   </CardDescription>
                 </CardContent>
@@ -170,8 +170,8 @@ const About = () => {
         {/* Our Values */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Values</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-white mb-4">Our Values</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">
               These core values guide everything we do, from the partners we choose 
               to the experiences we create for our customers.
             </p>
@@ -181,12 +181,12 @@ const About = () => {
             {values.map((value, index) => {
               const IconComponent = value.icon;
               return (
-                <div key={index} className="text-center group">
+                <div key={index} className="glass-card text-center p-6 group">
                   <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-purple-600/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <IconComponent className="w-10 h-10 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
+                  <h3 className="text-xl font-semibold text-white mb-3">{value.title}</h3>
+                  <p className="text-white/70">{value.description}</p>
                 </div>
               );
             })}
@@ -196,8 +196,8 @@ const About = () => {
         {/* Team */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-white mb-4">Meet Our Team</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">
               The passionate individuals behind LuxeStore, working together to bring you 
               the finest in luxury fashion and exceptional service.
             </p>
@@ -205,7 +205,7 @@ const About = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, index) => (
-              <Card key={index} className="text-center group hover:shadow-xl transition-all duration-300">
+              <Card key={index} className="glass-card text-center group hover:shadow-xl transition-all duration-300">
                 <CardHeader>
                   <div className="relative mx-auto mb-4">
                     <img
@@ -215,13 +215,13 @@ const About = () => {
                     />
                     <div className="absolute inset-0 w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-transparent mx-auto" />
                   </div>
-                  <CardTitle className="text-lg">{member.name}</CardTitle>
+                  <CardTitle className="text-lg text-white">{member.name}</CardTitle>
                   <CardDescription className="text-primary font-medium">
                     {member.role}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-600">{member.bio}</p>
+                  <p className="text-sm text-white/70">{member.bio}</p>
                 </CardContent>
               </Card>
             ))}
@@ -229,18 +229,18 @@ const About = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-primary to-purple-600 rounded-3xl p-12 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Join Our Story</h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+        <div className="glass-card bg-gradient-to-r from-primary/20 to-purple-600/20 rounded-3xl p-12 text-center border border-primary/30">
+          <h2 className="text-3xl font-bold mb-4 text-white">Join Our Story</h2>
+          <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
             Be part of the LuxeStore community and discover what makes luxury fashion 
             truly exceptional. Your style journey starts here.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary">
+            <Button size="lg" className="btn-primary">
               <Users className="w-5 h-5 mr-2" />
               Explore Collections
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-primary">
+            <Button size="lg" variant="outline" className="btn-secondary">
               Contact Our Team
             </Button>
           </div>

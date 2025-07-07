@@ -84,16 +84,16 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white">
-        <div className="absolute inset-0 bg-black/20" />
+      <div className="relative hero-section">
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-gray-900/80 to-black/60" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-white to-blue-300 bg-clip-text text-transparent mb-6">
+            <h1 className="hero-title text-gradient mb-6">
               Get In Touch
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="hero-subtitle text-white/80 max-w-3xl mx-auto">
               We're here to help with any questions about our products, services, or your shopping experience. 
               Reach out to our dedicated team of luxury fashion experts.
             </p>
@@ -101,24 +101,24 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto mobile-padding lg:px-8 py-16">
         {/* Contact Methods Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {contactInfo.map((info, index) => {
             const IconComponent = info.icon;
             return (
-              <Card key={index} className="text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <Card key={index} className="glass-card text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <CardHeader>
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                     <IconComponent className="w-8 h-8 text-primary" />
                   </div>
-                  <CardTitle className="text-lg">{info.title}</CardTitle>
+                  <CardTitle className="text-lg text-white">{info.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {info.details.map((detail, idx) => (
-                    <p key={idx} className="text-gray-600 text-sm">{detail}</p>
+                    <p key={idx} className="text-white/70 text-sm">{detail}</p>
                   ))}
-                  <Button variant="outline" size="sm" className="mt-4 w-full">
+                  <Button variant="outline" size="sm" className="mt-4 w-full btn-secondary">
                     {info.action}
                   </Button>
                 </CardContent>
@@ -130,13 +130,13 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Form */}
           <div>
-            <Card className="shadow-xl">
+            <Card className="glass-card shadow-xl">
               <CardHeader>
-                <CardTitle className="text-2xl flex items-center">
+                <CardTitle className="text-2xl flex items-center text-white">
                   <MessageCircle className="w-6 h-6 mr-2 text-primary" />
                   Send Us a Message
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-white/70">
                   Fill out the form below and we'll get back to you within 24 hours.
                 </CardDescription>
               </CardHeader>
@@ -149,9 +149,9 @@ const Contact = () => {
                         name="name"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Full Name</FormLabel>
+                            <FormLabel className="text-white">Full Name</FormLabel>
                             <FormControl>
-                              <Input placeholder="John Doe" {...field} />
+                              <Input placeholder="John Doe" {...field} className="glass-input-enhanced" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -162,9 +162,9 @@ const Contact = () => {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Email Address</FormLabel>
+                            <FormLabel className="text-white">Email Address</FormLabel>
                             <FormControl>
-                              <Input type="email" placeholder="john@example.com" {...field} />
+                              <Input type="email" placeholder="john@example.com" {...field} className="glass-input-enhanced" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -177,12 +177,12 @@ const Contact = () => {
                       name="subject"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Subject</FormLabel>
+                          <FormLabel className="text-white">Subject</FormLabel>
                           <FormControl>
-                            <select {...field} className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <select {...field} className="glass-input-enhanced w-full p-3 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
                               <option value="">Select a topic</option>
                               {departments.map((dept) => (
-                                <option key={dept.value} value={dept.value}>
+                                <option key={dept.value} value={dept.value} className="bg-gray-800 text-white">
                                   {dept.name}
                                 </option>
                               ))}
@@ -198,11 +198,11 @@ const Contact = () => {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Message</FormLabel>
+                          <FormLabel className="text-white">Message</FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="Tell us how we can help you..."
-                              className="min-h-[120px]"
+                              className="min-h-[120px] glass-input-enhanced"
                               {...field}
                             />
                           </FormControl>
@@ -211,7 +211,7 @@ const Contact = () => {
                       )}
                     />
 
-                    <Button type="submit" size="lg" className="w-full">
+                    <Button type="submit" size="lg" className="w-full btn-primary">
                       <Mail className="w-4 h-4 mr-2" />
                       Send Message
                     </Button>
@@ -224,8 +224,8 @@ const Contact = () => {
           {/* FAQ Section */}
           <div>
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-              <p className="text-gray-600">
+              <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+              <p className="text-white/70">
                 Find quick answers to common questions. Can't find what you're looking for? 
                 Contact us directly.
               </p>
@@ -233,12 +233,12 @@ const Contact = () => {
 
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <Card key={index} className="hover:shadow-md transition-shadow">
+                <Card key={index} className="glass-card hover:shadow-md transition-shadow">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-lg text-gray-900">{faq.question}</CardTitle>
+                    <CardTitle className="text-lg text-white">{faq.question}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600">{faq.answer}</p>
+                    <p className="text-white/70">{faq.answer}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -246,15 +246,15 @@ const Contact = () => {
 
             {/* Quick Stats */}
             <div className="mt-8 grid grid-cols-2 gap-4">
-              <div className="text-center p-6 bg-primary/5 rounded-xl">
+              <div className="glass-card text-center p-6 rounded-xl">
                 <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900">24h</div>
-                <div className="text-sm text-gray-600">Response Time</div>
+                <div className="text-2xl font-bold text-white">24h</div>
+                <div className="text-sm text-white/70">Response Time</div>
               </div>
-              <div className="text-center p-6 bg-primary/5 rounded-xl">
+              <div className="glass-card text-center p-6 rounded-xl">
                 <Heart className="w-8 h-8 text-primary mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900">98%</div>
-                <div className="text-sm text-gray-600">Satisfaction Rate</div>
+                <div className="text-2xl font-bold text-white">98%</div>
+                <div className="text-sm text-white/70">Satisfaction Rate</div>
               </div>
             </div>
           </div>
@@ -262,20 +262,20 @@ const Contact = () => {
 
         {/* Map Section */}
         <div className="mt-16">
-          <Card className="overflow-hidden">
+          <Card className="glass-card overflow-hidden">
             <CardHeader>
-              <CardTitle className="text-2xl">Visit Our Flagship Store</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-2xl text-white">Visit Our Flagship Store</CardTitle>
+              <CardDescription className="text-white/70">
                 Experience our collections in person at our New York showroom, 
                 featuring personal styling services and exclusive pieces.
               </CardDescription>
             </CardHeader>
             <CardContent className="p-0">
-              <div className="bg-gray-200 h-64 flex items-center justify-center">
+              <div className="bg-gray-800/50 h-64 flex items-center justify-center backdrop-blur-sm">
                 <div className="text-center">
-                  <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600">Interactive Map</p>
-                  <p className="text-sm text-gray-500">123 Fashion Avenue, New York, NY 10001</p>
+                  <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
+                  <p className="text-white/80">Interactive Map</p>
+                  <p className="text-sm text-white/60">123 Fashion Avenue, New York, NY 10001</p>
                 </div>
               </div>
             </CardContent>

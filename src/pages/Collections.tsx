@@ -87,19 +87,19 @@ const Collections = () => {
     : collections.filter(collection => collection.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white">
-        <div className="absolute inset-0 bg-black/20" />
+      <div className="relative hero-section">
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-gray-900/80 to-black/60" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
             <div className="flex items-center justify-center mb-6">
-              <Sparkles className="w-8 h-8 text-yellow-400 mr-3" />
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <Sparkles className="w-8 h-8 text-primary mr-3 animate-pulse" />
+              <h1 className="hero-title text-gradient">
                 Our Collections
               </h1>
             </div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="hero-subtitle text-white/80 max-w-3xl mx-auto">
               Discover carefully curated collections that define luxury and style. 
               Each piece tells a story of craftsmanship and elegance.
             </p>
@@ -107,7 +107,7 @@ const Collections = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto mobile-padding lg:px-8 py-12">
         {/* Filters and View Controls */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 space-y-4 lg:space-y-0">
           {/* Category Filters */}
@@ -117,10 +117,10 @@ const Collections = () => {
                 key={category.id}
                 variant={selectedCategory === category.id ? "default" : "outline"}
                 onClick={() => setSelectedCategory(category.id)}
-                className="flex items-center space-x-2"
+                className="glass-button-enhanced flex items-center space-x-2"
               >
                 <span>{category.name}</span>
-                <Badge variant="secondary" className="ml-1">
+                <Badge variant="secondary" className="ml-1 badge-enhanced">
                   {category.count}
                 </Badge>
               </Button>
@@ -133,6 +133,7 @@ const Collections = () => {
               variant={viewMode === 'grid' ? "default" : "outline"}
               size="sm"
               onClick={() => setViewMode('grid')}
+              className="glass-button-enhanced"
             >
               <Grid className="w-4 h-4" />
             </Button>
@@ -140,6 +141,7 @@ const Collections = () => {
               variant={viewMode === 'list' ? "default" : "outline"}
               size="sm"
               onClick={() => setViewMode('list')}
+              className="glass-button-enhanced"
             >
               <List className="w-4 h-4" />
             </Button>
@@ -152,7 +154,7 @@ const Collections = () => {
           : "space-y-6"
         }>
           {filteredCollections.map((collection) => (
-            <Card key={collection.id} className="group hover:shadow-2xl transition-all duration-300 overflow-hidden">
+            <Card key={collection.id} className="glass-card group hover:shadow-2xl transition-all duration-300 overflow-hidden">
               <div className="relative">
                 <img
                   src={collection.image}
@@ -160,34 +162,34 @@ const Collections = () => {
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 {collection.featured && (
-                  <Badge className="absolute top-4 left-4 bg-yellow-500 text-black">
+                  <Badge className="badge-enhanced absolute top-4 left-4 bg-primary text-black">
                     <Star className="w-3 h-3 mr-1" />
                     Featured
                   </Badge>
                 )}
                 <div className="absolute top-4 right-4 flex space-x-2">
-                  <Button size="sm" variant="secondary" className="opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Button size="sm" variant="secondary" className="favorite-button-enhanced opacity-0 group-hover:opacity-100 transition-opacity">
                     <Heart className="w-4 h-4" />
                   </Button>
                 </div>
               </div>
               
-              <CardHeader>
+              <CardHeader className="text-white">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-xl">{collection.name}</CardTitle>
-                  <Badge variant="outline">{collection.itemCount} items</Badge>
+                  <CardTitle className="text-xl text-white">{collection.name}</CardTitle>
+                  <Badge variant="outline" className="text-white/80 border-white/30">{collection.itemCount} items</Badge>
                 </div>
-                <CardDescription className="text-gray-600">
+                <CardDescription className="text-white/70">
                   {collection.description}
                 </CardDescription>
               </CardHeader>
               
               <CardContent>
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-semibold text-gray-900">
+                  <span className="text-lg font-semibold text-primary">
                     {collection.priceRange}
                   </span>
-                  <Button className="group-hover:bg-primary/90 transition-colors">
+                  <Button className="btn-primary">
                     <ShoppingBag className="w-4 h-4 mr-2" />
                     Explore
                   </Button>
@@ -200,40 +202,40 @@ const Collections = () => {
         {/* Featured Section */}
         <div className="mt-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Our Collections?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-white mb-4">Why Choose Our Collections?</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">
               Each collection is thoughtfully curated to represent the pinnacle of style, 
               quality, and craftsmanship in luxury fashion.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
+            <div className="glass-card text-center p-6">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Curated Excellence</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-white">Curated Excellence</h3>
+              <p className="text-white/70">
                 Every piece is hand-selected by our style experts for uncompromising quality and design.
               </p>
             </div>
             
-            <div className="text-center p-6">
+            <div className="glass-card text-center p-6">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Star className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Premium Materials</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-white">Premium Materials</h3>
+              <p className="text-white/70">
                 We source only the finest materials and work with renowned craftspeople worldwide.
               </p>
             </div>
             
-            <div className="text-center p-6">
+            <div className="glass-card text-center p-6">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Timeless Appeal</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-white">Timeless Appeal</h3>
+              <p className="text-white/70">
                 Our collections transcend trends, offering pieces you'll treasure for years to come.
               </p>
             </div>
